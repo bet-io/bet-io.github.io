@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://jimsblog.xyz</id>
+    <title>Jim&apos;s blog</title>
+    <updated>2022-04-05T02:58:01.825Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://jimsblog.xyz"/>
+    <link rel="self" href="https://jimsblog.xyz/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://jimsblog.xyz/images/avatar.png</logo>
+    <icon>https://jimsblog.xyz/favicon.ico</icon>
+    <rights>All rights reserved 2022, Jim&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[论一个人能有多无聊]]></title>
+        <id>https://jimsblog.xyz/post/lun-yi-ge-ren-neng-you-duo-wu-liao/</id>
+        <link href="https://jimsblog.xyz/post/lun-yi-ge-ren-neng-you-duo-wu-liao/">
+        </link>
+        <updated>2022-04-03T14:02:43.000Z</updated>
+        <content type="html"><![CDATA[<p>你肯定没想到我会无聊到使用cloudflare workers 反代百度。<br>
+这个项目我取名百度出海计划，让海外华人和歪果仁感受到百度的广告(提示，在境内的速度很慢)<br>
+链接:<a href="https://1.jimblog.workers.dev/">点我</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[我决定要转型了]]></title>
+        <id>https://jimsblog.xyz/post/wo-jue-ding-yao-zhuan-xing-liao/</id>
+        <link href="https://jimsblog.xyz/post/wo-jue-ding-yao-zhuan-xing-liao/">
+        </link>
+        <updated>2022-03-29T02:45:13.000Z</updated>
+        <content type="html"><![CDATA[<p>一直推荐这个推荐那个也没啥意思，明明是up主该做的事情，我却搬到博客上来，也没啥人来我的博客，连评论都没有。我决定放弃推荐，改成美文分享(技术类的我也不会)，欢迎来看转型后的Jim's blog。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[搭建了个免费外链云盘]]></title>
+        <id>https://jimsblog.xyz/post/da-jian-liao-ge-mian-fei-wai-lian-yun-pan/</id>
+        <link href="https://jimsblog.xyz/post/da-jian-liao-ge-mian-fei-wai-lian-yun-pan/">
+        </link>
+        <updated>2022-03-04T11:44:09.000Z</updated>
+        <content type="html"><![CDATA[<p>Jim的免费外链云盘，不需要账号即可使用，国内速度还不错，没有什么限制。<br>
+<a href="https://yunpan3.jimsblog.ml/">点我跳转</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[免费2级CDN加速域名分发]]></title>
+        <id>https://jimsblog.xyz/post/mian-fei-2-ji-cdn-he-fei-cdn-jia-su-yu-ming-fen-fa/</id>
+        <link href="https://jimsblog.xyz/post/mian-fei-2-ji-cdn-he-fei-cdn-jia-su-yu-ming-fen-fa/">
+        </link>
+        <updated>2022-03-03T01:10:09.000Z</updated>
+        <content type="html"><![CDATA[<p>大家都知道搞域名很麻烦，现在的免费2级域名分发又有很多限制<br>
+为了帮助诸多跟我一样的博主或者新手站长，特决定开放免费2级域名<br>
+提供的免费的域名的后缀：jimsblog.ml  jimblog.ml jimsblog.xyz<br>
+申请方式，按照以下格式发送请求到postmaster@jimsblog.ml<br>
+格式：域名的前缀<br>
+域名的后缀<br>
+使用的目的<br>
+记录形式（只支持A记录、AAAA、CHAME和NS）<br>
+记录对象<br>
+是否要用cdn<br>
+成功请求后，在1~3个工作日内会收到域名开通提醒</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[班尼特生日]]></title>
+        <id>https://jimsblog.xyz/post/ban-ni-te-sheng-ri/</id>
+        <link href="https://jimsblog.xyz/post/ban-ni-te-sheng-ri/">
+        </link>
+        <updated>2022-02-28T07:00:40.000Z</updated>
+        <content type="html"><![CDATA[<p>今天，我们又来了六星火神-----班尼特的生日<br>
+Happy Birthday!<br>
+<img src="https://i.imgtg.com/2022/02/28/Wa5R6.png" alt="Wa5R6.png" loading="lazy"><br>
+「旅行者，谢谢你的礼物！我平日里受了你很多关照，是你的善良和对我的好意，让我避开了很多不幸！这是我做的独一份的提瓦特焦蛋，嘿嘿...快来尝尝吧。」</p>
+<p>「我尝一下…焦焦的地方好好吃啊！第一次吃到如此焦脆的提瓦特焦蛋~」<br>
+<img src="https://i.imgtg.com/2022/03/01/Wqsdl.jpg" alt="" loading="lazy"><br>
+<img src="https://i.imgtg.com/2022/03/01/Wq9IK.png" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[又多了个博客]]></title>
+        <id>https://jimsblog.xyz/post/you-duo-liao-ge-bo-ke/</id>
+        <link href="https://jimsblog.xyz/post/you-duo-liao-ge-bo-ke/">
+        </link>
+        <updated>2022-02-22T03:12:27.000Z</updated>
+        <content type="html"><![CDATA[<p>为了体验动态博客，jim's blog 2.0版正式启动 新网址http://jimdeng.typecho.space/</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[本站已加入萌国ICP备案]]></title>
+        <id>https://jimsblog.xyz/post/ben-zhan-yi-jia-ru-meng-guo-icp-bei-an/</id>
+        <link href="https://jimsblog.xyz/post/ben-zhan-yi-jia-ru-meng-guo-icp-bei-an/">
+        </link>
+        <updated>2022-02-12T11:28:28.000Z</updated>
+        <content type="html"><![CDATA[<p>嗯，你没看错，这是萌国的ICP备案。<br>
+萌国在哪呢，听某萌主说，好像是个异次元上的国度。<br>
+萌主就爱给人组cp,俗称icp<br>
+我们说的是萌国ICP备案，号称萌ICP备，简称萌备</p>
+<p>萌ICP备 纯属萌友网站联萌！<br>
+是一种次元中的爱好，文化的展现。<br>
+若你在万千网站中遇到萌备<br>
+甚有缘分! ✧(≖ ◡ ≖✿)</p>
+<p>萌备仅供萌友网站互动，请放心食用。（提示：萌ICP备非真实中国ICP备案）</p>
+<p>上面的话引用自萌ICP备案官网。<br>
+看看我们的备案信息!<br>
+<img src="https://pic.rmb.bdstatic.com/bjh/35b81ac18b73e0198a8049e7b3ce9663.png" alt="ben-zhan-yi-jia-ru-meng-guo-icp-bei-an.png" loading="lazy"></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[宝藏我的世界服务器]]></title>
+        <id>https://jimsblog.xyz/post/bao-cang-wo-de-shi-jie-fu-wu-qi/</id>
+        <link href="https://jimsblog.xyz/post/bao-cang-wo-de-shi-jie-fu-wu-qi/">
+        </link>
+        <updated>2022-02-06T11:41:05.000Z</updated>
+        <content type="html"><![CDATA[<p>1.18.1插件生存服务器。服务器群号：714164002<br>
+特色：腐竹自制的tpa插件、各种各样的黑科技、好看的建筑，例如：群玉阁、海底神殿<br>
+IP:8.141.161.127:25565<br>
+樱花：cn-zz-bgp-5.natfrp.cloud:62575（推荐）</p>
+<p>2022-2-16更新<br>
+服务器已经全面迁移到简幻欢<br>
+IP地址已更换<br>
+高速地址：play.simpfun.cn:26018 高防地址：tiger.simpfun.cn:26018<br>
+服务器官网:3c3u.smnet01.tk 3c3u.smnet01.cf 3c3u.smnet01.gq 3c3u.smnet01.ml 3c3u.smnet01.ga</p>
+<figure data-type="image" tabindex="1"><img src="https://mapp.alicdn.com/1645327244904msnaKk0OJU60TM8.png" alt="123456654123.png" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[CDN镜像网址]]></title>
+        <id>https://jimsblog.xyz/post/cdn-jing-xiang-wang-zhi/</id>
+        <link href="https://jimsblog.xyz/post/cdn-jing-xiang-wang-zhi/">
+        </link>
+        <updated>2022-01-29T11:20:37.000Z</updated>
+        <content type="html"><![CDATA[<p>如果本域名加载速度太慢，可以使用此域名<a href="https://jimblog.pages.dev/">点我</a><br>
+<a href="https://123-bet-io.vercel.app">点我</a>  <a href="https://123-navy.vercel.app">点我</a> <a href="https://123-git-main-bet-io.vercel.app">点我</a>（三个都可以）</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[原神"二创"]]></title>
+        <id>https://jimsblog.xyz/post/zui-jin-kan-dao-liao-hao-shi-pin/</id>
+        <link href="https://jimsblog.xyz/post/zui-jin-kan-dao-liao-hao-shi-pin/">
+        </link>
+        <updated>2022-01-22T02:02:52.000Z</updated>
+        <content type="html"><![CDATA[<p>愿薪火相传，美德不灭</p>
+<div style="position: relative; padding: 30% 45%;">
+    <iframe style="
+        position: absolute; 
+        width: 100%; 
+        height: 100%; 
+        left: 0; top: 0;" 
+        src="//player.bilibili.com/player.html?aid=850807871&bvid=BV1QL4y147wM&cid=489228155" 
+        scrolling="no" 
+        border="0" 
+        frameborder="no" 
+        framespacing="0" 
+        allowfullscreen="true">
+    </iframe>
+</div>
+<p><a href="https://download.yunzhongzhuan.com/download/media/36a5de214865d6f98a45df97f3b90beae19cec/Genshin.mp4">1080P版视频下载链接</a></p>
+]]></content>
+    </entry>
+</feed>
