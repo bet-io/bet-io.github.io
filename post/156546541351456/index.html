@@ -1,0 +1,271 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>如何自建代理服务器 | Jim&#39;s blog</title>
+
+<link rel="shortcut icon" href="https://blog.jimsdeng.me/favicon.ico?v=1757140401037">
+
+<link href="https://cdn1.tianli0.top/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.jimsdeng.me/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn1.tianli0.top/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn1.tianli0.top/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlight.js/11.6.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.staticfile.org/highlight.js/11.6.0/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn1.tianli0.top/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn1.tianli0.top/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn1.tianli0.top/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn1.tianli0.top/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn1.tianli0.top/npm/katex@0.12.0/dist/katex.css">
+    
+        <script src="https://cdn1.tianli0.top/npm/mermaid@9.1.1/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script> 
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Jim&#39;s blog
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/tu-lang" class="menu gt-a-link">
+                    图廊
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/friends" class="menu gt-a-link">
+                    友链
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/lian-xi-wo-ya" class="menu gt-a-link">
+                    📬 联系我呀
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/bo-zhu-shi-shui" class="menu gt-a-link">
+                    👨‍💻 博主是谁
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/xing-qu-ai-hao" class="menu gt-a-link">
+                    ⛹ 兴趣爱好
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/guan-yu-ben-zhan" class="menu gt-a-link">
+                    🏠 关于本站
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1757140401037"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    如何自建代理服务器
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2022-08-17 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在本文中需要用到机场、clash代理软件和服务器 免费机场可以用<a href="https://ikuuu.ltd/">ikuuu免费机场</a> 服务器(最好要买国内的服务器)可以用<a href="https://cloud.tencent.com/">腾讯云</a> 或者<a href="https://www.aliyun.com/">阿里云</a><a href="https://www.huaweicloud.com/">华为云</a>也是不错的选择 <a href="https://www.ucloud.cn/">uccloud</a>也挺不错的 <a href="https://www.rainyun.com?ref=MjI5MzY=">雨云</a>最便宜 只要够肝 还能白嫖</p>
+<h2 id="第一步-安装并运行clash">第一步、安装并运行Clash</h2>
+<p>去<a href="https://github.com/Dreamacro/clash/releases">官方主页</a>下载<br>
+<a href="https://imgtg.com/image/KxwXc"><img src="https://i.imgtg.com/2022/08/17/KxwXc.png" alt="KxwXc.png" loading="lazy"></a><br>
+选择linux-amd64<br>
+# 解压<br>
+<code>gunzip clash-linux-amd64-v1.7.0.gz</code><br>
+# 改名<br>
+<code>mv clash-linux-amd64-v1.7.0.gz clash</code><br>
+#<br>
+<code>mkdir Clash</code><br>
+<code>mv clash ./Clash</code><br>
+# 赋予权限<br>
+<code>chmod +x clash</code><br>
+进入新建的这个Clash文件夹，下载config.yaml和Country.mmdb<br>
+<code>wget -O config.yaml [订阅链接]</code><br>
+<code>wget -O Country.mmdb https://www.sub-speeder.com/client-download/Country.mmdb</code><br>
+启动clash（使用当前目录下的配置文件）<br>
+<code>./clash -d .</code><br>
+如果是直接执行 ./clash，则配置文件放在  ~/.config/clash</p>
+<h2 id="第二步-开放端口9090">第二步、开放端口9090</h2>
+<p>在宝塔和安全组中开放9090端口 安全组开放需要两条记录 一条udp 一条tcp 均为输出</p>
+<h2 id="第三步-连接它">第三步、连接它</h2>
+<p>设置Gridea软件的远程设置中的代理选项 地址为你的服务器的IP 端口为9090<br>
+windows系统代理也是这样子的</p>
+<blockquote>
+<p>致谢</p>
+<blockquote>
+<p>感谢<a href="https://www.cnblogs.com/lfri">Rogn</a>发布的Linux安装Clash代理文章(本文主要参考这篇文章)<br>
+感谢<a href="https://www.gracg.com/user/wuxiaoxian">舞小仙</a>在<a href="https://www.gracg.com/">涂鸦王国</a>发布的<a href="https://www.gracg.com/works/view/2039361">复古室内</a></p>
+</blockquote>
+</blockquote>
+
+                </div>
+            </article>
+        </div>
+
+        
+
+        
+            <span id="/post/156546541351456/" class="leancloud_visitors" data-flag-title="如何自建代理服务器">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn1.tianli0.top/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'JDci0elkAOk7pNl1Rbu6BlTi-gzGzoHsz',
+		appKey: '1iwgdot9gAO3NlhtDz1SHJTC',
+		avatar: 'identicon',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: 'Just Go Go',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">温故而知新</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/bet-io/" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        © Jim's blog 2020~2024 <a href="https://icp.gov.moe/?keyword=20231241" target="_blank">萌ICP备20231241号</a>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://blog.jimsdeng.me/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

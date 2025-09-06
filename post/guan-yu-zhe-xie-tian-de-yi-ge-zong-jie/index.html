@@ -1,0 +1,258 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>关于这些天的一个总结 | Jim&#39;s blog</title>
+
+<link rel="shortcut icon" href="https://blog.jimsdeng.me/favicon.ico?v=1757140401037">
+
+<link href="https://cdn1.tianli0.top/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.jimsdeng.me/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn1.tianli0.top/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn1.tianli0.top/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlight.js/11.6.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.staticfile.org/highlight.js/11.6.0/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn1.tianli0.top/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn1.tianli0.top/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn1.tianli0.top/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn1.tianli0.top/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn1.tianli0.top/npm/katex@0.12.0/dist/katex.css">
+    
+        <script src="https://cdn1.tianli0.top/npm/mermaid@9.1.1/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script> 
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Jim&#39;s blog
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/tu-lang" class="menu gt-a-link">
+                    图廊
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/friends" class="menu gt-a-link">
+                    友链
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/lian-xi-wo-ya" class="menu gt-a-link">
+                    📬 联系我呀
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/bo-zhu-shi-shui" class="menu gt-a-link">
+                    👨‍💻 博主是谁
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/xing-qu-ai-hao" class="menu gt-a-link">
+                    ⛹ 兴趣爱好
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/guan-yu-ben-zhan" class="menu gt-a-link">
+                    🏠 关于本站
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1757140401037"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    关于这些天的一个总结
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2022-05-12 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>这些天发生了很多事<br>
+我成了腐竹，搞了一大堆网站啥的<br>
+其中我力推反代jsdelivr<br>
+其实这是我为了防止国内反代jsdelivr再挂掉的一个备用方案<br>
+由于域名没有备案，用的是海外的CDN<br>
+速度比cdn.jsdelivr.net快很多<br>
+这边推荐一个博主的国内反代jsdelivr<br>
+采用的是国内CDN，应该是目前国内唯一一个反代jsdelivr了，很多都挂了<br>
+网址:https://jsd.hin.cool/<br>
+网址:https://cdn1.tianli0.top/<br>
+第2个网址有使用限制详见<a href="https://tianli-blog.club/2022/01/26/cdn/#%E5%85%8D%E8%B4%B9JSD%E9%95%9C%E5%83%8F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C-%E6%B1%82%E6%89%93%E8%B5%8F">点我</a><br>
+使用方法：把cdn.jsdelivr.net改成反代网址即可</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://blog.jimsdeng.me/post/lun-yi-ge-ren-neng-you-duo-wu-liao/" class="post-title gt-a-link">
+                    论一个人能有多无聊
+                </a>
+            </div>
+        
+
+        
+            <span id="/post/guan-yu-zhe-xie-tian-de-yi-ge-zong-jie/" class="leancloud_visitors" data-flag-title="关于这些天的一个总结">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn1.tianli0.top/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'JDci0elkAOk7pNl1Rbu6BlTi-gzGzoHsz',
+		appKey: '1iwgdot9gAO3NlhtDz1SHJTC',
+		avatar: 'identicon',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: 'Just Go Go',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">温故而知新</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/bet-io/" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        © Jim's blog 2020~2024 <a href="https://icp.gov.moe/?keyword=20231241" target="_blank">萌ICP备20231241号</a>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://blog.jimsdeng.me/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

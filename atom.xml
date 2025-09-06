@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.jimsdeng.me</id>
+    <title>Jim&apos;s blog</title>
+    <updated>2025-09-06T06:33:22.839Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://blog.jimsdeng.me"/>
+    <link rel="self" href="https://blog.jimsdeng.me/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://blog.jimsdeng.me/images/avatar.png</logo>
+    <icon>https://blog.jimsdeng.me/favicon.ico</icon>
+    <rights>All rights reserved 2025, Jim&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[免费的观影网站]]></title>
+        <id>https://blog.jimsdeng.me/post/mian-fei-de-guan-ying-wang-zhan/</id>
+        <link href="https://blog.jimsdeng.me/post/mian-fei-de-guan-ying-wang-zhan/">
+        </link>
+        <updated>2025-07-08T14:43:59.000Z</updated>
+        <content type="html"><![CDATA[<p>L站上挺火的两个网站<br>
+仓库:<a href="https://github.com/senshinya/MoonTV">MoonTV</a> . <a href="https://moontv-demo.shinya.click/">演示站</a><br>
+<a href="https://github.com/LibreSpark/LibreTV">LibreTV</a><br>
+图片<br>
+<img src="https://blog.jimsdeng.me/post-images/1751986272748.png" alt="MoonTV" loading="lazy"><br>
+<img src="https://blog.jimsdeng.me/post-images/1751986818397.png" alt="LibreTV" loading="lazy"><br>
+<em>别忘了star</em><br>
+给两个演示站都是MoonTV的<br>
+Edgeone: <a href="https://moontv.jimsdeng.me/">有优选，速度快（有香港cn2节点）</a><br>
+Vercel: <a href="https://moontv.jimsblog.eu.org/">没优选,但是vercel的对大陆的优化好</a></p>
+<p>MoonTV可以作为OrionTV的后端呢(这样就不用另外部署后端了)<br>
+<a href="https://github.com/zimplexing/OrionTV">OrionTV</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[解决huggingface部署notdiamond2api的奇葩接口]]></title>
+        <id>https://blog.jimsdeng.me/post/jie-jue-huggingface-bu-shu-notdiamond2api-de-qi-pa-jie-kou/</id>
+        <link href="https://blog.jimsdeng.me/post/jie-jue-huggingface-bu-shu-notdiamond2api-de-qi-pa-jie-kou/">
+        </link>
+        <updated>2024-09-28T08:55:57.000Z</updated>
+        <content type="html"><![CDATA[<p>原贴<a href="https://linux.do/t/topic/210967">使用Dockerfile文件部署notdiamond2api（支持huggingface） - 资源荟萃 / 资源荟萃, Lv2 - LINUX DO</a><br>
+参考 <a href="https://linux.do/t/topic/197275">GitHub-Models-使用指南 - 文档共建 - LINUX DO</a><br>
+用cloudflare worker 还能实现自定义域名</p>
+<pre><code>addEventListener('fetch', event =&gt; {
+  event.respondWith(handleRequest(event.request))
+})
+
+async function handleRequest(request) {
+  const url = new URL(request.url)
+
+  if (url.pathname.startsWith('/v1')) {
+    const newUrl = new URL(request.url)
+    newUrl.hostname = '你的域名'
+    newUrl.pathname = newUrl.pathname.replace('/v1', '//v1',) 
+
+    const newRequest = new Request(newUrl, {
+      method: request.method,
+      headers: request.headers,
+      body: request.body
+    })
+
+    return fetch(newRequest)
+  }
+
+  return fetch(request)
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用Dockerfile文件部署notdiamond2api（支持huggingface）]]></title>
+        <id>https://blog.jimsdeng.me/post/shi-yong-dockerfile-wen-jian-bu-shu-notdiamond2apizhi-chi-huggingface/</id>
+        <link href="https://blog.jimsdeng.me/post/shi-yong-dockerfile-wen-jian-bu-shu-notdiamond2apizhi-chi-huggingface/">
+        </link>
+        <updated>2024-09-28T08:53:11.000Z</updated>
+        <content type="html"><![CDATA[<p>我用gpt写的 我也不知道怎么解决 如果有问题问原作者<br>
+<a href="https://github.com/Jiabinone/notdiamond2api">原仓库</a><br>
+具体问题问原作者 他开发的程序<br>
+dockerfile文件内容 （要根据自己的情况填写变量）</p>
+<pre><code># 使用指定的基础镜像
+FROM fjiabinc/notdiamond2api
+
+# 设置环境变量
+ENV PORT=3000 \
+    AUTH_EMAIL=your_email@example.com \
+    AUTH_PASSWORD=your_password \
+    AUTH_ENABLED=true \
+    AUTH_TOKEN=your_token_here
+
+# 暴露端口 3000
+EXPOSE 3000
+
+# 启动命令
+CMD [&quot;python&quot;, &quot;app.py&quot;]
+</code></pre>
+<ul>
+<li><code>AUTH_EMAIL</code>：您的登录邮箱。</li>
+<li><code>AUTH_PASSWORD</code>：您的登录密码。</li>
+<li><code>PORT</code>：启动端口，默认为 3000。如需更改，请把Dockerfile的两个port都改了。</li>
+<li><code>AUTH_ENABLED</code>: 是否启用验证。</li>
+<li><code>AUTH_TOKEN</code>: 使用的身份令牌。<br>
+<a href="https://linux.do/t/topic/212058">解决huggingface部署notdiamond2api的奇葩接口 - 资源荟萃 / 资源荟萃, Lv2 - LINUX DO</a><br>
+<img src="https://ooo.0x0.ooo/2024/09/28/O4QX3L.png" alt="O4QX3L.png" loading="lazy"><br>
+<a href="https://linux.do/t/topic/210967/52?u=jimdeng">huggingface部署教程</a></li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[这是由chagpt写的关于生活的一篇博文]]></title>
+        <id>https://blog.jimsdeng.me/post/zhe-shi-you-chagpt-xie-de-guan-yu-sheng-huo-de-yi-pian-bo-wen/</id>
+        <link href="https://blog.jimsdeng.me/post/zhe-shi-you-chagpt-xie-de-guan-yu-sheng-huo-de-yi-pian-bo-wen/">
+        </link>
+        <updated>2023-02-11T15:41:35.000Z</updated>
+        <content type="html"><![CDATA[<p>生活是人类最重要的事情之一，它是我们生存的基础，也是我们生存的意义所在。生活不仅仅是生存，它还是一种体验，一种生存的方式。</p>
+<p>生活是多样的，有些人生活得很丰富多彩，有些人生活得很单调乏味。无论生活如何，我们都应该珍惜生活，因为生活是珍贵的。</p>
+<p>珍惜生活的方法有很多，其中一种方法是要有一份积极向上的心态。我们应该学会把每一天都看作是生命中最美好的一天，并努力去享受生活。另一种方法是要有一个丰富多彩的生活方式。我们可以做一些自己喜欢的事情，去一些有趣的地方，和一些有趣的人一起生活。</p>
+<p>最后，我们应该要学会珍惜生活中的每一个人，每一件事。我们应该学会欣赏生活中的每一件美好的事物，每一个美好的人。因为，生活中的每一件事都是珍贵的，每一个人都是珍贵的。</p>
+<p>生活是珍贵的，我们应该珍惜生活。我们应该学会享受生活，学会珍惜生活，学会爱生活。因为生活只有一次，我们应该好好生活。</p>
+<p>生活中还有很多其他的因素，对生活有着深远的影响。其中一个重要的因素是工作。工作不仅仅是赚钱，它还是一种生活方式，一种了解自我和他人的方式。</p>
+<p>工作是人们生活中的一部分，它可以让我们有更多的机会去了解自己，去了解他人。工作是一个很好的机会，可以让我们发展自己的技能，并且让我们对自己的能力有更清晰的认识。</p>
+<p>然而，工作也有它的困难。工作的压力是很大的，工作的工作量是很大的。因此，我们应该要学会如何平衡工作和生活，以便我们可以生活得更好。</p>
+<p>另一个因素是家庭。家庭是人们生活中最重要的一部分，它是人们最重要的依靠。家庭可以让我们感到安全，可以让我们感到温暖。家庭是一个人最好的朋友，是一个人最好的支持者。</p>
+<p>因此，我们应该学会珍惜家庭，珍惜家庭中的每一个人，每一件事。我们应该学会与家人相处，学会与家人分享生活。我们应该学会为家人做一些事情，并且学会从家人那里得到支持。</p>
+<p>生活是多样的，它有很多的因素。我们需要学会去欣赏生活中的美好事物，学会去感受生活的温度。生活是一段美妙的旅程，我们需要去珍惜每一天，去享受每一刻。</p>
+<p>此外，我们还需要学会关爱自己。我们要注意自己的身体健康，保持良好的生活习惯，学会放松身心。当我们感到疲惫的时候，我们应该学会休息，学会照顾自己。</p>
+<p>最后，我们需要学会去关心他人。我们需要学会去帮助他人，去关爱他人。我们要学会去体谅他人的困难，并且给予他们帮助。</p>
+<p>总的来说，生活是多姿多彩的，我们需要学会去享受它，学会去珍惜它。生活是一种美好的旅程，我们要学会去享受它，去享受每一天。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[博客合集]]></title>
+        <id>https://blog.jimsdeng.me/post/bo-ke-he-ji/</id>
+        <link href="https://blog.jimsdeng.me/post/bo-ke-he-ji/">
+        </link>
+        <updated>2022-12-10T14:00:24.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="jimsblogxyz">jimsblog.xyz</h2>
+<figure data-type="image" tabindex="1"><img src="https://cy-pic.kuaizhan.com/g3/e0/12/e778-7b30-409e-bc5b-e8eaf0fc61ee11?cysign=9a2b85b95d5c00ae86f2cbe8ef772bd7&amp;cyt=1670681345" alt="" loading="lazy"></figure>
+<blockquote>
+<p>主博客，发一些乱七八糟的东西</p>
+</blockquote>
+<h2 id="jimdengtypechospace">jimdeng.typecho.space</h2>
+<figure data-type="image" tabindex="2"><img src="https://p0.meituan.net/csc/24606132ffc050412750b9c0604a95981534280.png" alt="" loading="lazy"></figure>
+<blockquote>
+<p>暂时弃用</p>
+</blockquote>
+<h2 id="blog589000xyz">blog.589000.xyz</h2>
+<figure data-type="image" tabindex="3"><img src="https://ak-d.tripcdn.com/images/0Z0162215dadaqlr4F2BE.png" alt="" loading="lazy"></figure>
+<blockquote>
+<p>发布些关于网站的免费的小工具</p>
+</blockquote>
+<h2 id="jimsblogml">jimsblog.ml</h2>
+<figure data-type="image" tabindex="4"><img src="https://i.imgtg.com/2022/12/10/DyAIG.png" alt="" loading="lazy"></figure>
+<blockquote>
+<p>发布些作文素材</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[零成本反代jsdelver]]></title>
+        <id>https://blog.jimsdeng.me/post/ling-cheng-ben-fan-dai-jsdelver/</id>
+        <link href="https://blog.jimsdeng.me/post/ling-cheng-ben-fan-dai-jsdelver/">
+        </link>
+        <updated>2022-08-17T02:36:54.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="第一种方法虚拟主机反代">第一种方法(虚拟主机反代)</h2>
+<blockquote>
+<p>将下面的代码保存为index.php</p>
+</blockquote>
+<pre><code>    &lt;?php
+    $file = $_SERVER['REQUEST_URI'];
+    $self_path = pathinfo($_SERVER['PHP_SELF'], PATHINFO_DIRNAME);
+    $query = '';
+    if($_SERVER['QUERY_STRING'])
+    {
+        $file = explode('?', $file)[0];
+        $query = '?' . $_SERVER['QUERY_STRING'];
+    }
+    $file_info = pathinfo($file);
+    $path = $file_info['dirname'];
+    if($path=='/') exit('/* ??? */');
+    $mimetype = get_mimetype($file_info['extension']);
+
+    $cdn_file = $file;
+    if(strlen($self_path)&gt;1){
+       $cdn_file = substr($file, strlen($self_path));  
+    }
+
+    $local_path = substr(pathinfo( $cdn_file, PATHINFO_DIRNAME), 1);
+    if($local_path &amp;&amp; !is_dir($local_path)){
+    @mkdir($local_path, 755, true);
+    }
+
+    $url = 'https://cdn.jsdelivr.net' . $cdn_file . $query;
+
+    $content = curl($url);
+    if($content){
+        header('content-type:'. $mimetype .';charset=utf-8');
+        echo '/* ' . $url .'*/';
+        file_put_contents(substr($cdn_file, 1), $content);
+        exit($content);
+    }else{
+        header('location: ' .$url );
+    }
+
+
+    function curl($url)
+    {
+	    $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, $url);
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	    curl_setopt($ch, CURLOPT_NOSIGNAL, 1);
+	    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, 3000);
+	    curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
+	    if (strpos($url, 'https') !== false) {
+		    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+	    }
+	    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0;     Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.190       Safari/537.36');
+	    $result = curl_exec($ch);
+	    curl_close($ch);
+	    return $result;
+    }
+    /**
+     * 根据文件后缀获取其mine类型
+     * @param string $extension
+     * @return string
+     */
+     function get_mimetype($extension) {
+	    $ct['htm'] = 'text/html';
+	    $ct['html'] = 'text/html';
+        $ct['txt'] = 'text/plain';
+	    $ct['asc'] = 'text/plain';
+	    $ct['bmp'] = 'image/bmp';
+    	$ct['gif'] = 'image/gif';
+	    $ct['jpeg'] = 'image/jpeg';
+	    $ct['jpg'] = 'image/jpeg';
+	    $ct['jpe'] = 'image/jpeg';
+	    $ct['png'] = 'image/png';
+	    $ct['ico'] = 'image/vnd.microsoft.icon';
+    	$ct['mpeg'] = 'video/mpeg';
+    	$ct['mpg'] = 'video/mpeg';
+    	$ct['mpe'] = 'video/mpeg';
+    	$ct['qt'] = 'video/quicktime';
+    	$ct['mov'] = 'video/quicktime';
+	    $ct['avi'] = 'video/x-msvideo';
+    	$ct['wmv'] = 'video/x-ms-wmv';
+    	$ct['mp2'] = 'audio/mpeg';
+    	$ct['mp3'] = 'audio/mpeg';
+    	$ct['rm'] = 'audio/x-pn-realaudio';
+    	$ct['ram'] = 'audio/x-pn-realaudio';
+    	$ct['rpm'] = 'audio/x-pn-realaudio-plugin';
+    	$ct['ra'] = 'audio/x-realaudio';
+    	$ct['wav'] = 'audio/x-wav';
+    	$ct['css'] = 'text/css';
+	    $ct['zip'] = 'application/zip';
+	    $ct['pdf'] = 'application/pdf';
+	    $ct['doc'] = 'application/msword';
+	    $ct['bin'] = 'application/octet-stream';
+	    $ct['exe'] = 'application/octet-stream';
+	    $ct['class'] = 'application/octet-stream';
+	    $ct['dll'] = 'application/octet-stream';
+	    $ct['xls'] = 'application/vnd.ms-excel';
+	    $ct['ppt'] = 'application/vnd.ms-powerpoint';
+	    $ct['wbxml'] = 'application/vnd.wap.wbxml';
+	    $ct['wmlc'] = 'application/vnd.wap.wmlc';
+	    $ct['wmlsc'] = 'application/vnd.wap.wmlscriptc';
+	    $ct['dvi'] = 'application/x-dvi';
+	    $ct['spl'] = 'application/x-futuresplash';
+	    $ct['gtar'] = 'application/x-gtar';
+	    $ct['gzip'] = 'application/x-gzip';
+	    $ct['js'] = 'application/javascript';
+	    $ct['swf'] = 'application/x-shockwave-flash';
+	    $ct['tar'] = 'application/x-tar';
+        $ct['7z'] = 'application/x7zcompressed';
+        $ct['rar'] = 'application/x-rar-compressed';
+	    $ct['xhtml'] = 'application/xhtml+xml';
+    	$ct['au'] = 'audio/basic';
+	    $ct['snd'] = 'audio/basic';
+	    $ct['midi'] = 'audio/midi';
+    	$ct['mid'] = 'audio/midi';
+	    $ct['m3u'] = 'audio/x-mpegurl';
+    	$ct['tiff'] = 'image/tiff';
+    	$ct['tif'] = 'image/tiff';
+	    $ct['rtf'] = 'text/rtf';
+	    $ct['wml'] = 'text/vnd.wap.wml';
+	    $ct['wmls'] = 'text/vnd.wap.wmlscript';
+	    $ct['xsl'] = 'text/xml';
+	    $ct['xml'] = 'text/xml';
+	
+	    return isset($ct[strtolower($extension)]) ? $ct[strtolower($extension)] : 'text/html';
+    }  
+</code></pre>
+<h3 id="用法介绍">用法介绍</h3>
+<blockquote>
+<p>如果放在根目录，直接把cdn.jsdelivr.net替换成你的域名就好了<br>
+如果放在某个子目录下，比如cdn目录下，把cdn.jsdelivr.net替换成你的域名/cdn（如https://&gt; example.com/cdn）即可</p>
+</blockquote>
+<h2 id="第二种办法vercel反代">第二种办法(vercel反代)</h2>
+<blockquote>
+<p>需要的：vercel账号(绑定了github) 、node.js</p>
+</blockquote>
+<h3 id="第一步">第一步</h3>
+<pre><code>npm install -g cnpm --registry=https://registry.npmmirror.com
+</code></pre>
+<h3 id="第二步">第二步</h3>
+<pre><code>cnpm i -g vercel
+</code></pre>
+<h3 id="第三步">第三步</h3>
+<pre><code>vercel login 
+</code></pre>
+<blockquote>
+<p>记得选择github登录 你会看到一个是否同意nodejs打开网页的提示框 选是<br>
+###第四步<br>
+创建并进入一个新的文件夹</p>
+<blockquote>
+<p>在文件夹内创建vercel.json内容</p>
+</blockquote>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="第一种方法虚拟主机反代">第一种方法(虚拟主机反代)</h2>
+<blockquote>
+<p>将下面的代码保存为index.php</p>
+</blockquote>
+<pre><code>    &lt;?php
+    $file = $_SERVER['REQUEST_URI'];
+    $self_path = pathinfo($_SERVER['PHP_SELF'], PATHINFO_DIRNAME);
+    $query = '';
+    if($_SERVER['QUERY_STRING'])
+    {
+        $file = explode('?', $file)[0];
+        $query = '?' . $_SERVER['QUERY_STRING'];
+    }
+    $file_info = pathinfo($file);
+    $path = $file_info['dirname'];
+    if($path=='/') exit('/* ??? */');
+    $mimetype = get_mimetype($file_info['extension']);
+
+    $cdn_file = $file;
+    if(strlen($self_path)&gt;1){
+       $cdn_file = substr($file, strlen($self_path));  
+    }
+
+    $local_path = substr(pathinfo( $cdn_file, PATHINFO_DIRNAME), 1);
+    if($local_path &amp;&amp; !is_dir($local_path)){
+    @mkdir($local_path, 755, true);
+    }
+
+    $url = 'https://cdn.jsdelivr.net' . $cdn_file . $query;
+
+    $content = curl($url);
+    if($content){
+        header('content-type:'. $mimetype .';charset=utf-8');
+        echo '/* ' . $url .'*/';
+        file_put_contents(substr($cdn_file, 1), $content);
+        exit($content);
+    }else{
+        header('location: ' .$url );
+    }
+
+
+    function curl($url)
+    {
+	    $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, $url);
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	    curl_setopt($ch, CURLOPT_NOSIGNAL, 1);
+	    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, 3000);
+	    curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
+	    if (strpos($url, 'https') !== false) {
+		    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+	    }
+	    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0;     Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.190       Safari/537.36');
+	    $result = curl_exec($ch);
+	    curl_close($ch);
+	    return $result;
+    }
+    /**
+     * 根据文件后缀获取其mine类型
+     * @param string $extension
+     * @return string
+     */
+     function get_mimetype($extension) {
+	    $ct['htm'] = 'text/html';
+	    $ct['html'] = 'text/html';
+        $ct['txt'] = 'text/plain';
+	    $ct['asc'] = 'text/plain';
+	    $ct['bmp'] = 'image/bmp';
+    	$ct['gif'] = 'image/gif';
+	    $ct['jpeg'] = 'image/jpeg';
+	    $ct['jpg'] = 'image/jpeg';
+	    $ct['jpe'] = 'image/jpeg';
+	    $ct['png'] = 'image/png';
+	    $ct['ico'] = 'image/vnd.microsoft.icon';
+    	$ct['mpeg'] = 'video/mpeg';
+    	$ct['mpg'] = 'video/mpeg';
+    	$ct['mpe'] = 'video/mpeg';
+    	$ct['qt'] = 'video/quicktime';
+    	$ct['mov'] = 'video/quicktime';
+	    $ct['avi'] = 'video/x-msvideo';
+    	$ct['wmv'] = 'video/x-ms-wmv';
+    	$ct['mp2'] = 'audio/mpeg';
+    	$ct['mp3'] = 'audio/mpeg';
+    	$ct['rm'] = 'audio/x-pn-realaudio';
+    	$ct['ram'] = 'audio/x-pn-realaudio';
+    	$ct['rpm'] = 'audio/x-pn-realaudio-plugin';
+    	$ct['ra'] = 'audio/x-realaudio';
+    	$ct['wav'] = 'audio/x-wav';
+    	$ct['css'] = 'text/css';
+	    $ct['zip'] = 'application/zip';
+	    $ct['pdf'] = 'application/pdf';
+	    $ct['doc'] = 'application/msword';
+	    $ct['bin'] = 'application/octet-stream';
+	    $ct['exe'] = 'application/octet-stream';
+	    $ct['class'] = 'application/octet-stream';
+	    $ct['dll'] = 'application/octet-stream';
+	    $ct['xls'] = 'application/vnd.ms-excel';
+	    $ct['ppt'] = 'application/vnd.ms-powerpoint';
+	    $ct['wbxml'] = 'application/vnd.wap.wbxml';
+	    $ct['wmlc'] = 'application/vnd.wap.wmlc';
+	    $ct['wmlsc'] = 'application/vnd.wap.wmlscriptc';
+	    $ct['dvi'] = 'application/x-dvi';
+	    $ct['spl'] = 'application/x-futuresplash';
+	    $ct['gtar'] = 'application/x-gtar';
+	    $ct['gzip'] = 'application/x-gzip';
+	    $ct['js'] = 'application/javascript';
+	    $ct['swf'] = 'application/x-shockwave-flash';
+	    $ct['tar'] = 'application/x-tar';
+        $ct['7z'] = 'application/x7zcompressed';
+        $ct['rar'] = 'application/x-rar-compressed';
+	    $ct['xhtml'] = 'application/xhtml+xml';
+    	$ct['au'] = 'audio/basic';
+	    $ct['snd'] = 'audio/basic';
+	    $ct['midi'] = 'audio/midi';
+    	$ct['mid'] = 'audio/midi';
+	    $ct['m3u'] = 'audio/x-mpegurl';
+    	$ct['tiff'] = 'image/tiff';
+    	$ct['tif'] = 'image/tiff';
+	    $ct['rtf'] = 'text/rtf';
+	    $ct['wml'] = 'text/vnd.wap.wml';
+	    $ct['wmls'] = 'text/vnd.wap.wmlscript';
+	    $ct['xsl'] = 'text/xml';
+	    $ct['xml'] = 'text/xml';
+	
+	    return isset($ct[strtolower($extension)]) ? $ct[strtolower($extension)] : 'text/html';
+    }  
+</code></pre>
+<h3 id="用法介绍">用法介绍</h3>
+<blockquote>
+<p>如果放在根目录，直接把cdn.jsdelivr.net替换成你的域名就好了<br>
+如果放在某个子目录下，比如cdn目录下，把cdn.jsdelivr.net替换成你的域名/cdn（如https://&gt; example.com/cdn）即可</p>
+</blockquote>
+<h2 id="第二种办法vercel反代">第二种办法(vercel反代)</h2>
+<blockquote>
+<p>需要的：vercel账号(绑定了github) 、node.js</p>
+</blockquote>
+<h3 id="第一步">第一步</h3>
+<pre><code>npm install -g cnpm --registry=https://registry.npmmirror.com
+</code></pre>
+<h3 id="第二步">第二步</h3>
+<pre><code>cnpm i -g vercel
+</code></pre>
+<h3 id="第三步">第三步</h3>
+<pre><code>vercel login 
+</code></pre>
+<blockquote>
+<p>记得选择github登录 你会看到一个是否同意nodejs打开网页的提示框 选是<br>
+###第四步<br>
+创建并进入一个新的文件夹</p>
+<blockquote>
+<p>在文件夹内创建vercel.json内容</p>
+</blockquote>
+</blockquote>
+<pre><code>&lt;!-- more --&gt;
+{
+&quot;version&quot;: 2,
+&quot;routes&quot;: [
+{&quot;src&quot;: &quot;/(.*)&quot;,&quot;dest&quot;: &quot;https://cdn.jsdelivr.net/$1&quot;}
+]
+}
+</code></pre>
+<!-- more -->
+<h3 id="第五步">第五步</h3>
+<!-- more -->
+<pre><code>vercel -A vercel.json --prod
+</code></pre>
+<!-- more -->
+<p>可以连接现有项目 也可以新建个项目</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[关于Gridea同步失败的问题（最终解答）]]></title>
+        <id>https://blog.jimsdeng.me/post/guan-yu-gridea-tong-bu-shi-bai-de-wen-ti-zui-zhong-jie-da/</id>
+        <link href="https://blog.jimsdeng.me/post/guan-yu-gridea-tong-bu-shi-bai-de-wen-ti-zui-zhong-jie-da/">
+        </link>
+        <updated>2022-08-14T13:26:51.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-fastgithub">1、fastgithub</h2>
+<p><a href="https://jimdeng.lanzoul.com/i5GgW09k2rmb">下载</a><br>
+解压zip文件,打开FastGithub.UI.exe 可以最小化文件</p>
+<h2 id="2-clash-for-windows">2、clash for windows</h2>
+<p><a href="https://jimdeng.lanzoul.com/b03da1csd">下载</a>密码:3k0m<br>
+其中有ia32的文件为32位 没有的是64位<br>
+建议搭配<a href="https://ikuuu.tw/">免费机场</a> 或者galdos使用<br>
+clash开启代理后需要在Gridea远程设置中HTTP代理设置地址与端口<br>
+地址:127.0.0.1 端口:7890</p>
+<h2 id="3-自建代理服务器">3、自建代理服务器</h2>
+<p>在Gridea远程设置中设置地址与端口<br>
+关于如何自建HTTP代理服务器这个问题敬请期待下一篇文章</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Some nices songs from Jay Zhou]]></title>
+        <id>https://blog.jimsdeng.me/post/some-nices-songs-from-jay-zhou/</id>
+        <link href="https://blog.jimsdeng.me/post/some-nices-songs-from-jay-zhou/">
+        </link>
+        <updated>2022-08-14T11:22:01.000Z</updated>
+        <content type="html"><![CDATA[<p>In QQ songs you need 30 yuan to listen his music , some pool people can't listen the songs. But now you can listen the songs and download it.<br>
+Download link:https://jimdeng.lanzoul.com/b03d6sd6f<br>
+密码:6ybo</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[关于这些天的一个总结]]></title>
+        <id>https://blog.jimsdeng.me/post/guan-yu-zhe-xie-tian-de-yi-ge-zong-jie/</id>
+        <link href="https://blog.jimsdeng.me/post/guan-yu-zhe-xie-tian-de-yi-ge-zong-jie/">
+        </link>
+        <updated>2022-05-12T11:53:11.000Z</updated>
+        <content type="html"><![CDATA[<p>这些天发生了很多事<br>
+我成了腐竹，搞了一大堆网站啥的<br>
+其中我力推反代jsdelivr<br>
+其实这是我为了防止国内反代jsdelivr再挂掉的一个备用方案<br>
+由于域名没有备案，用的是海外的CDN<br>
+速度比cdn.jsdelivr.net快很多<br>
+这边推荐一个博主的国内反代jsdelivr<br>
+采用的是国内CDN，应该是目前国内唯一一个反代jsdelivr了，很多都挂了<br>
+网址:https://jsd.hin.cool/<br>
+网址:https://cdn1.tianli0.top/<br>
+第2个网址有使用限制详见<a href="https://tianli-blog.club/2022/01/26/cdn/#%E5%85%8D%E8%B4%B9JSD%E9%95%9C%E5%83%8F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C-%E6%B1%82%E6%89%93%E8%B5%8F">点我</a><br>
+使用方法：把cdn.jsdelivr.net改成反代网址即可</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[论一个人能有多无聊]]></title>
+        <id>https://blog.jimsdeng.me/post/lun-yi-ge-ren-neng-you-duo-wu-liao/</id>
+        <link href="https://blog.jimsdeng.me/post/lun-yi-ge-ren-neng-you-duo-wu-liao/">
+        </link>
+        <updated>2022-04-03T14:02:43.000Z</updated>
+        <content type="html"><![CDATA[<p>你肯定没想到我会无聊到使用cloudflare workers 反代百度。<br>
+这个项目我取名百度出海计划，让海外华人和歪果仁感受到百度的广告(提示，在境内的速度很慢)<br>
+链接:<a href="https://1.jimblog.workers.dev/">点我</a></p>
+<script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>]]></content>
+    </entry>
+</feed>
